@@ -1,5 +1,5 @@
 
-CFLAGS=-g -std=c99
+CFLAGS=-g -std=c99 -Wall
 
 all: test
 	./test
