@@ -48,8 +48,27 @@ getline_fails_with_no_input(void) {
 	free(out);
 }
 
+void
+getline_reallocates(void) {
+	char original[] = "aaaaaaaaaaaaaaaaaaaaaaa";
+	size_t line_len = 5;
+	char* out = malloc(line_len);
+	FILE* file = tmpfile();
+
+	fputs(original, file);
+	rewind(file);
+
+	getline(&out, &line_len, file);
+
+	TEST_CHECK(line_len >= sizeof original);
+
+	fclose(file);
+	free(out);
+}
+
 TEST_LIST = {
 	{ "Basic usage", getline_basic },
 	{ "getline fails for empty file input", getline_fails_with_no_input },
+	{ "getline reallocs if dest buffer to small", getline_reallocates },
 	{ NULL, NULL },
 };
