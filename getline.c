@@ -14,5 +14,5 @@ getline_shim(char** lineptr, size_t* n, FILE* stream) {
 
 	strcpy(*lineptr, in_line);
 
-	return 0;
+	return strlen(*lineptr);
 }

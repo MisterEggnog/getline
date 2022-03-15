@@ -23,8 +23,8 @@ getline_basic(void) {
 	TEST_DUMP("Expected:", exp, sizeof exp);
 	TEST_DUMP("Produced:", out, strlen(out));
 
-	TEST_CHECK(chars_read == sizeof exp);
-	TEST_MSG("getline returned %ld, rather than %ld", chars_read, sizeof exp);
+	TEST_CHECK(chars_read == (sizeof exp - 1));
+	TEST_MSG("getline returned %ld, rather than %ld", chars_read, (sizeof exp - 1));
 
 	fclose(tmp_out);
 	free(out);
