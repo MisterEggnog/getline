@@ -1,3 +1,5 @@
+// For reference
+// https://www.gnu.org/software/libc/manual/html_mono/libc.html#Line-Input
 #include <acutest.h>
 #include <stdlib.h>
 #include <string.h>
