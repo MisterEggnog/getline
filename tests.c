@@ -21,6 +21,7 @@ getline_basic(void) {
 	TEST_CHECK(strcmp(exp, out) == 0);
 
 	fclose(tmp_out);
+	free(out);
 }
 
 TEST_LIST = {
