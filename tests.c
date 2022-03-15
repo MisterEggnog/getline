@@ -40,7 +40,7 @@ getline_fails_with_no_input(void) {
 
 	TEST_CHECK(ret_code == -1);
 	TEST_MSG("getline did not return -1 for empty input.\n"
-			 "returned %d.", ret_code);
+			 "returned %ld.", ret_code);
 
 	fclose(tmp_out);
 	free(out);
