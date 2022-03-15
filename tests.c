@@ -19,6 +19,8 @@ getline_basic(void) {
 	getline(&out, &line_len, tmp_out);
 
 	TEST_CHECK(strcmp(exp, out) == 0);
+	TEST_DUMP("Expected:", exp, sizeof exp);
+	TEST_DUMP("Produced:", out, strlen(out));
 
 	fclose(tmp_out);
 	free(out);
@@ -33,7 +35,8 @@ getline_fails_with_no_input(void) {
 	ssize_t ret_code = getline(&out, &line_len, tmp_out);
 
 	TEST_CHECK(ret_code == -1);
-	TEST_MSG("getline did not return -1 for empty input.");
+	TEST_MSG("getline did not return -1 for empty input.\n"
+			 "returned %d.", ret_code);
 
 	fclose(tmp_out);
 	free(out);
