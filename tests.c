@@ -61,6 +61,7 @@ getline_reallocates(void) {
 	getline(&out, &line_len, file);
 
 	TEST_CHECK(line_len >= sizeof original);
+	TEST_MSG("Orig %zd, dest %zd", sizeof original, line_len);
 
 	fclose(file);
 	free(out);
