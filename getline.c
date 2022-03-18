@@ -6,7 +6,8 @@
 ssize_t
 getline_shim(char** lineptr, size_t* n, FILE* stream) {
 	char in_line[LINE_SIZE] = "";
-	void* result;
+	void* result = NULL;
+	size_t read_length = 0;
 
 	do {
 		result = fgets(in_line, sizeof in_line, stream);
@@ -17,8 +18,9 @@ getline_shim(char** lineptr, size_t* n, FILE* stream) {
 		}
 
 		strcpy(*lineptr, in_line);
-	} while (feof(stream) == 0 && *lineptr[strlen(*lineptr)] != '\n');
+		read_length = strlen(*lineptr);
+	} while (feof(stream) == 0 && *lineptr[read_length] != '\n');
 
 
-	return strlen(*lineptr);
+	return read_length;
 }
