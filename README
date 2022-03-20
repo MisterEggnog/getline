@@ -1,0 +1,3 @@
+Future goals
+Hopefully have test for clang, gcc, msvc.
+Do not compile if Gnu/Posix/Dynamic Memory Extension.
