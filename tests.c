@@ -126,7 +126,6 @@ getline_gives_error_lineptr_null_but_n_not_0(void) {
 	TEST_MSG("result %s (" PRIdMAX ")", out, result);
 
 	fclose(file);
-	free(out);
 }
 
 void
@@ -144,7 +143,6 @@ getline_gives_error_n_0_but_lineptr_not_null(void) {
 	TEST_MSG("result %s (" PRIdMAX ")", out, result);
 
 	fclose(file);
-	free(out);
 }
 
 TEST_LIST = {
