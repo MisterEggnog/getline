@@ -123,7 +123,7 @@ getline_gives_error_lineptr_null_but_n_not_0(void) {
 
 	intmax_t result = getline(&out, &line_len, file);
 	TEST_CHECK(result < 0);
-	TEST_MSG("result %s (" PRIdMAX ")", out, result);
+	TEST_MSG("result %p (%" PRIdMAX ")", out, result);
 
 	fclose(file);
 }
@@ -140,7 +140,7 @@ getline_gives_error_n_0_but_lineptr_not_null(void) {
 
 	intmax_t result = getline(&out, &line_len, file);
 	TEST_CHECK(result < 0);
-	TEST_MSG("result %s (" PRIdMAX ")", out, result);
+	TEST_MSG("result %p (%" PRIdMAX ")", out, result);
 
 	fclose(file);
 }
