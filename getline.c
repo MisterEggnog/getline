@@ -11,6 +11,11 @@ getline_shim(char** lineptr, size_t* n, FILE* stream) {
 	void* result = NULL;
 	size_t read_length = 0;
 
+	if ((*lineptr == NULL && *n != 0) || (*lineptr != NULL && *n == 0)) {
+		printf("meat");
+		return -1;
+	}
+
 	do {
 		result = fgets(in_line, sizeof in_line, stream);
 
