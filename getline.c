@@ -29,7 +29,7 @@ getline_shim(char** lineptr, size_t* n, FILE* stream) {
 			*n = new_len;
 		}
 
-		strcpy(*lineptr, in_line);
+		strcpy(*lineptr + read_length, in_line);
 		read_length = strlen(*lineptr);
 	} while (feof(stream) == 0 && (*lineptr)[read_length - 1] != '\n');
 
