@@ -67,9 +67,33 @@ getline_reallocates(void) {
 	free(out);
 }
 
+void
+getline_larger_then_intern_buffer(void) {
+	char source[200];
+	for (unsigned i = 0; i < sizeof source; i++)
+		source[i] = 'c';
+	source[sizeof source - 2] = '\n';
+	source[sizeof source - 1] = '\0';
+	size_t line_len = LINE_LEN;
+	char* out = malloc(line_len);
+	FILE* file = tmpfile();
+
+	fputs(source, file);
+	rewind(file);
+
+	getline(&out, &line_len, file);
+
+	TEST_CHECK(strcmp(source, out) == 0);
+	TEST_MSG("Src: %s : dest: %s", source, out);
+
+	fclose(file);
+	free(out);
+}
+
 TEST_LIST = {
 	{ "Basic usage", getline_basic },
 	{ "getline fails for empty file input", getline_fails_with_no_input },
 	{ "getline reallocs if dest buffer to small", getline_reallocates },
+	{ "getline works for string larger than internal buffer", getline_larger_then_intern_buffer },
 	{ NULL, NULL },
 };
