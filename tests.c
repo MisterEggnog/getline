@@ -109,11 +109,29 @@ getline_allocates_on_null(void) {
 	free(out);
 }
 
+void
+getline_gives_error_lineptr_null_but_n_not_0(void) {
+	char source[] = "pipipipipipipip";
+	size_t line_len = 666;
+	char* out = NULL;
+	FILE* file = tmpfile();
+
+	fputs(source, file);
+	rewind(file);
+
+	size_t result = getline(&out, &line_len, file);
+	TEST_CHECK(result < 0);
+
+	fclose(file);
+	free(out);
+}
+
 TEST_LIST = {
 	{ "Basic usage", getline_basic },
 	{ "getline fails for empty file input", getline_fails_with_no_input },
 	{ "getline reallocs if dest buffer to small", getline_reallocates },
 	{ "getline works for string larger than internal buffer", getline_larger_then_intern_buffer },
 	{ "Allocates when passed null + 0", getline_allocates_on_null },
+	{ "getline fails when passed null but !0", getline_gives_error_lineptr_null_but_n_not_0 },
 	{ NULL, NULL },
 };
