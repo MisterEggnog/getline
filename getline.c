@@ -11,8 +11,10 @@ getline_shim(char** lineptr, size_t* n, FILE* stream) {
 	void* result = NULL;
 	size_t read_length = 0;
 
-	if ((*lineptr == NULL && *n != 0) || (*lineptr != NULL && *n == 0)) {
-		printf("meat");
+	if ((*lineptr == NULL) ^ (*n == 0)) {
+		// No definition in the gnu c documentation about what to do in this context.
+		fprintf(stderr, "%s passed lineptr (%p) & n (%zd)\n", __func__, *lineptr, *n);
+		fprintf(stderr, "This should be NULL & 0.");
 		return -1;
 	}
 
