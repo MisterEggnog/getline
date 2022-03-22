@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h>
 #include "getline.h"
 
 #define LINE_LEN 85
@@ -119,8 +121,9 @@ getline_gives_error_lineptr_null_but_n_not_0(void) {
 	fputs(source, file);
 	rewind(file);
 
-	size_t result = getline(&out, &line_len, file);
+	intmax_t result = getline(&out, &line_len, file);
 	TEST_CHECK(result < 0);
+	TEST_MSG("result %s (" PRIdMAX ")", out, result);
 
 	fclose(file);
 	free(out);
@@ -136,8 +139,9 @@ getline_gives_error_n_0_but_lineptr_not_null(void) {
 	fputs(source, file);
 	rewind(file);
 
-	size_t result = getline(&out, &line_len, file);
+	intmax_t result = getline(&out, &line_len, file);
 	TEST_CHECK(result < 0);
+	TEST_MSG("result %s (" PRIdMAX ")", out, result);
 
 	fclose(file);
 	free(out);
