@@ -90,10 +90,30 @@ getline_larger_then_intern_buffer(void) {
 	free(out);
 }
 
+void
+getline_allocates_on_null(void) {
+	char source[] = "pizza pizza pizza pizzzzzzzzzzzaeps";
+	size_t line_len = 0;
+	char* out = NULL;
+	FILE* file = tmpfile();
+
+	fputs(source, file);
+	rewind(file);
+
+	getline(&out, &line_len, file);
+
+	TEST_CHECK(strcmp(source, out) == 0);
+	TEST_MSG("Src: %s : dest: %s", source, out);
+
+	fclose(file);
+	free(out);
+}
+
 TEST_LIST = {
 	{ "Basic usage", getline_basic },
 	{ "getline fails for empty file input", getline_fails_with_no_input },
 	{ "getline reallocs if dest buffer to small", getline_reallocates },
 	{ "getline works for string larger than internal buffer", getline_larger_then_intern_buffer },
+	{ "Allocates when passed null + 0", getline_allocates_on_null },
 	{ NULL, NULL },
 };
