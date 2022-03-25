@@ -3,3 +3,5 @@ This (hopefully) implements the gnu getline function in standard c99.
 Future goals
 Hopefully have test for clang, gcc, msvc.
 Do not compile if Gnu/Posix/Dynamic Memory Extension.
+Fuzz tests
+Integration tests
