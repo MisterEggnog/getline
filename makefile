@@ -1,5 +1,5 @@
 
-CFLAGS=-g -std=c99 -Wall -I acutest/include
+CFLAGS=-g -std=c89 -Wall -I acutest/include
 
 all: test
 	./test
