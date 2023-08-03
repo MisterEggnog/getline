@@ -1,4 +1,4 @@
-This (hopefully) implements the gnu getline function in standard c99.
+This (hopefully) implements the gnu getline function in standard c89.
 
 Future goals
 Hopefully have test for clang, gcc, msvc.
